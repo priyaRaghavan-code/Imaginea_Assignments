@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./style.css">
+    <title>Registration</title>
+</head>
+<body>
+ <div class="input-container">
+    <div class="input-icons">
+        <form id="myform">
+            <table>
+                <tr>
+                    <td><p>First Name</p></td>
+                    <td>
+                        <div class="input-group">
+                            <div class="icon-box"><i class="fa fa-user icon"></i></div>
+                            <div class="text-box">
+                                <input type="text" placeholder="First Name" id="fname" class="input-field">
+                            </div>
+                        </div>
+                        <p class="error-message" id="fnameError">Invalid First Name</p>
+                    </td>
+                </tr>
+                <tr>
+                <td><p>Last Name</p></td>
+                    <td>
+                        <div class="input-group">
+                            <div class="icon-box"><i class="fa fa-user icon"></i></div>
+                            <div class="text-box">
+                                <input type="text" placeholder="Last Name" id="lname" class="input-field">
+                            </div>
+                        </div>
+                        <p class="error-message" id="lnameError">Invalid Last Name</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Department/Office</p></td>
+                    <td>
+                        <div class="input-group">
+                            <div class="icon-box"><i class="fa fa-user list"></i></div>
+                            <div class="text-box">
+                                <input type="text" placeholder="Department/Office" id="dept" class="input-field">
+                            </div>
+                        </div>
+                        <p class="error-message" id="deptError">Invalid Department Name</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>User Name</p></td>
+                    <td>
+                        <div class="input-group">
+                            <div class="icon-box"><i class="fa fa-user icon"></i></div>
+                            <div class="text-box">
+                                <input type="text" placeholder="User Name" id="uname" class="input-field">
+                            </div>
+                        </div>
+                        <p class="error-message" id="unameError">Invalid First Name</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Password</p></td>
+                    <td>
+                        <div class="input-group">
+                            <div class="icon-box"><i class="fa fa-user icon"></i></div>
+                            <div class="text-box">
+                                <input type="text" placeholder="Password" id="pwd" class="input-field">
+                            </div>
+                        </div>
+                        <p class="error-message" id="pwdError">Invalid Password</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Confirm Password</p></td>
+                    <td>
+                        <div class="input-group">
+                            <div class="icon-box"><i class="fa fa-user icon"></i></div>
+                            <div class="text-box">
+                                <input type="text" placeholder="Confirm Password" id="confirmpwd" class="input-field">
+                            </div>
+                        </div>
+                        <p class="error-message" id="fnameError">Invalid First Name</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Email Address</p></td>
+                    <td>
+                        <div class="input-group">
+                            <div class="icon-box"><i class="fa fa-envelope icon"></i></div>
+                            <div class="text-box">
+                                <input type="text" placeholder="E-Mail Address" id="email" class="input-field">
+                            </div>
+                        </div>
+                        <p class="error-message" id="emailError">Invalid Email </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><p>Contact No</p></td>
+                    <td>
+                        <div class="input-group">
+                            <div class="icon-box"><i class="fa fa-phone-alt icon"></i></div>
+                            <div class="text-box">
+                                <input type="text" placeholder="(639)" id="num" class="input-field">
+                            </div>
+                        </div>
+                        <p class="error-message" id="numError">Invalid Phone Number</p>
+                    </td>
+                </tr>
+            </table>
+            <i class="fa fa-telegram icon"></i>
+            <button type="button" class="button-field" id="submitButton">Submit</button></br>
+        </form>
+    </div>
+ </div>
+ <script src="./index.js"></script>
+</body>
+</html>
