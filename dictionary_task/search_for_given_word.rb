@@ -1,38 +1,26 @@
 require 'trie'
 class TrieNode
   attr_accessor :is_end
-  TrieNode Trie[]
-  def def initialize(is_end)
-    @is_end = true
-  end
-
-  def TrieNode
-    Trie = new TrieNode[256]
-    0.upto(256) do |i|
-      Trie[i] = nil
-    end
+  def initialize()
     @is_end = false
+    @Trie = Array.new(256,nil)
   end
 end
 
-class Node
-  def initialize()
-  end
-
-  def insert_node(TrieNode root, string)
-    TrieNode temp = root
-    0.downto(string.length) do |i|
-      if temp.Trie[string[i]] == nil
-        temp.Trie[string[i]] = TrieNode.new()
-      end
+def insert_node(root, string)
+  temp = root
+  0.downto(string.length) do |i|
+    if temp.Trie[string[i]] == nil
+       temp.Trie[string[i]] = TrieNode.new()
+     end
       temp = temp.Trie[string[i]]
     end
-    temp.@is_end = true
-  end
+    temp.is_end = true
+end
 
-  def print_suggested_words(TrieNode root,string)
-    if root.@is_end == nil
-      p result + " "
+  def print_suggested_words(root,result)
+    if root.is_end != true
+      puts result + " " + "Inside"
     end
     0.downto(256) do |i|
       if root.Trie[i] != nil
@@ -43,8 +31,8 @@ class Node
     end
   end
 
-  def check_string_is_present(TrieNode root, key)
-    0.downto(key.lenght) do |i|
+  def check_string_is_present(root, key)
+    0.downto(key.length) do |i|
       if root.Trie[key[i]] == nil
         print_suggested_words(root, key[0..i])
       end
@@ -57,9 +45,7 @@ class Node
     end
     return false
   end
-
-
-end
+  
 # Json_array = { :A => ["apple", "app", "aple", "an", "aeroplane", "and", "alphabet", "again", "assure", "alone"], 
 #                :B => ["banned", "banana", "buffalo", "bush", "bus", "band", "burst", "bull", "bind", "bound"],
 #                :C => ["cat", "can", "cape", "carnivel", "carrot", "car", "cast", "cut", "cute", "cutest","curl"] }
@@ -67,14 +53,13 @@ end
 
 string_words = ["hi", "hind","hello","how","here","her"]
 key = "hifi"
-TrieNode root = TrieNode.new()
+root = TrieNode.new()
 
 string_words.each do |word|
   insert_node(root,word)
 end
-
-if check_string_is_present(root, key)
-  p "yes " + key +" is present"
-end
-
+print_suggested_words(root,key)
+#if check_string_is_present(root, key)
+ # p "yes " + key +" is present"
+#end
 
