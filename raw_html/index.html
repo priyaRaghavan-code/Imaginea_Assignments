@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./style.css">
+  <title>Registration</title>
+</head>
+
+<body>
+  <div class="input-container">
+    <form id="myform">
+      <table>
+        <tr>
+          <td></td>
+          <td id="heading">
+            <h2>Registration Form</h2>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="head-value">First Name</p>
+          </td>
+          <td>
+            <div class="input-group">
+              <div class="icon-box"><i class="fa fa-user icon"></i></div>
+              <div class="text-box">
+                <input type="text" placeholder="First Name" id="fname" class="input-field" required>
+              </div>
+            </div>
+            <p class="error-message" id="fnameError">Invalid First Name</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="head-value">Last Name</p>
+          </td>
+          <td>
+            <div class="input-group">
+              <div class="icon-box"><i class="fa fa-user icon"></i></div>
+              <div class="text-box">
+                <input type="text" placeholder="Last Name" id="lname" class="input-field" required>
+              </div>
+            </div>
+            <p class="error-message" id="lnameError">Invalid Last Name</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="head-value">Department / Office</p>
+          </td>
+          <td>
+            <div class="input-group">
+              <div class="icon-box"><i class="fa fa-bars icon"></i></div>
+              <div class="text-box">
+                <select id="dept" class="input-field" required>
+                  <option value="">Select your Department/Office</option>
+                  <option value="Medical"> Medical </option>
+                  <option value="IT"> IT </option>
+                  <option value="Finance"> Finance </option>
+                  <option value="Commercial"> Commercial </option>
+                </select>
+              </div>
+            </div>
+            <p class="error-message" id="deptError">Please Select Any One Department!</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="head-value">Username</p>
+          </td>
+          <td>
+            <div class="input-group">
+              <div class="icon-box"><i class="fa fa-user icon"></i></div>
+              <div class="text-box">
+                <input type="text" placeholder="User Name" id="uname" class="input-field" required>
+              </div>
+            </div>
+            <p class="error-message" id="unameError">Invalid User Name</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="head-value">Password</p>
+          </td>
+          <td>
+            <div class="input-group">
+              <div class="icon-box"><i class="fa fa-user icon"></i></div>
+              <div class="text-box">
+                <input type="password" placeholder="Password" id="pwd" class="input-field" required>
+              </div>
+            </div>
+            <p class="error-message" id="pwdError">Password Should contain at least one lowercase
+              letter, one uppercase letter, one numeric digit, and one special character and mininimum
+              length should be 8.</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="head-value">Confirm Password</p>
+          </td>
+          <td>
+            <div class="input-group">
+              <div class="icon-box"><i class="fa fa-user icon"></i></div>
+              <div class="text-box">
+                <input type="password" placeholder="Confirm Password" id="confirmpwd" class="input-field" required>
+              </div>
+            </div>
+            <p class="error-message" id="confirmpwdError">Password and Confirm Password doesn't matach.
+            </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="head-value">E-Mail</p>
+          </td>
+          <td>
+            <div class="input-group">
+              <div class="icon-box"><i class="fa fa-envelope icon"></i></div>
+              <div class="text-box">
+                <input type="text" placeholder="E-Mail Address" id="email" class="input-field" required>
+              </div>
+            </div>
+            <p class="error-message" id="emailError">Invalid Email </p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p class="head-value">Contact No.</p>
+          </td>
+          <td>
+            <div class="input-group">
+              <div class="icon-box"><i class="fa fa-phone icon"></i></div>
+              <div class="text-box">
+                <input type="text" placeholder="(639)" id="num" class="input-field" required>
+              </div>
+            </div>
+            <p class="error-message" id="numError">Invalid Phone Number</p>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <div>
+              <button type="button" class="button-field" id="submitButton">Submit <span class="icon-box-button"><i
+                    class="fa fa-paper-plane-o"></i></span></button></br>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <script src="./index.js"></script>
+</body>
+
+</html>

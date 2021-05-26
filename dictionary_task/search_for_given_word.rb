@@ -7,7 +7,11 @@ class Node
 end
 
 def insert_node(root,word)
+<<<<<<< HEAD
   for i in 0..word.length - 1
+=======
+  0.upto(word.length - 1) do |i|
+>>>>>>> 9e963f45a1a55fa8da586208f103face3aea0046
     if word[i] != nil && root.Trie[word[i].ord - 97] == nil
       root.Trie[word[i].ord - 97] = Node.new()
     end
@@ -20,7 +24,11 @@ def print_suggested_words(root, result)
   if root.is_end == true
     puts "Do you mean? " + result
   end
+<<<<<<< HEAD
   for i in 0..26 - 1
+=======
+  0.upto(26 - 1) do |i|
+>>>>>>> 9e963f45a1a55fa8da586208f103face3aea0046
     if root.Trie[i] != nil
       result += (i+97).chr 
       print_suggested_words(root.Trie[i], result)
@@ -30,7 +38,11 @@ def print_suggested_words(root, result)
 end
 
 def check_string_is_present(root, key)
+<<<<<<< HEAD
   for i in 0..key.length - 1
+=======
+  0.upto(key.length - 1) do |i|
+>>>>>>> 9e963f45a1a55fa8da586208f103face3aea0046
     if root.Trie[key[i].ord - 97] == nil
       print_suggested_words(root, key[0..i - 1])
       return false
@@ -59,7 +71,11 @@ String_words_meaning = {:hi => "used as a friendly greeting or to attract attent
   :bush => "a shrub or clump of shrubs with stems of moderate length",
   :burst => "a shrub or clump of shrubs with stems of moderate length",
   :appointed => " decided on beforehand; designated"}
+<<<<<<< HEAD
 key = "hi"
+=======
+key = "hifi"
+>>>>>>> 9e963f45a1a55fa8da586208f103face3aea0046
 root = Node.new()
 
 string_words.each do |word|
@@ -75,4 +91,8 @@ if check_string_is_present(root, key.downcase)
       p "#{k}: #{v}"
     end
   end
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> 9e963f45a1a55fa8da586208f103face3aea0046
