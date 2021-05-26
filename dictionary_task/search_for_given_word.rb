@@ -1,6 +1,6 @@
 require 'trie'
 class TrieNode
-  attr_accessor :is_end
+  attr_accessor :is_end,:Trie
   def initialize()
     @is_end = false
     @Trie = Array.new(256,nil)
@@ -8,21 +8,22 @@ class TrieNode
 end
 
 def insert_node(root, string)
-  temp = root
-  0.downto(string.length) do |i|
+   temp = root
+   for i in 0..string.length
     if temp.Trie[string[i]] == nil
        temp.Trie[string[i]] = TrieNode.new()
-     end
-      temp = temp.Trie[string[i]]
     end
-    temp.is_end = true
+   temp = temp.Trie[string[i]
+   end
+   temp.is_end = true
 end
 
   def print_suggested_words(root,result)
-    if root.is_end != true
+    if root.is_end == true
       puts result + " " + "Inside"
     end
-    0.downto(256) do |i|
+    for i in 0..256 do
+   # 0.downto(256) do |i|
       if root.Trie[i] != nil
         result += i.chr 
         print_suggested_words(root.Trie[i], result)
@@ -32,7 +33,8 @@ end
   end
 
   def check_string_is_present(root, key)
-    0.downto(key.length) do |i|
+    for i in 0..key.length
+    #  0.downto(key.length) do |i|
       if root.Trie[key[i]] == nil
         print_suggested_words(root, key[0..i])
       end
@@ -57,7 +59,10 @@ root = TrieNode.new()
 
 string_words.each do |word|
   insert_node(root,word)
+  p root
 end
+
+
 print_suggested_words(root,key)
 #if check_string_is_present(root, key)
  # p "yes " + key +" is present"
