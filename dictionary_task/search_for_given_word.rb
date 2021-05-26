@@ -7,7 +7,7 @@ class Node
 end
 
 def insert_node(root,word)
-  for i in 0..word.length - 1
+  0.upto(word.length - 1) do |i|
     if word[i] != nil && root.Trie[word[i].ord - 97] == nil
       root.Trie[word[i].ord - 97] = Node.new()
     end
@@ -20,7 +20,7 @@ def print_suggested_words(root, result)
   if root.is_end == true
     puts "Do you mean? " + result
   end
-  for i in 0..26 - 1
+  0.upto(26 - 1) do |i|
     if root.Trie[i] != nil
       result += (i+97).chr 
       print_suggested_words(root.Trie[i], result)
@@ -30,7 +30,7 @@ def print_suggested_words(root, result)
 end
 
 def check_string_is_present(root, key)
-  for i in 0..key.length - 1
+  0.upto(key.length - 1) do |i|
     if root.Trie[key[i].ord - 97] == nil
       print_suggested_words(root, key[0..i - 1])
       return false
@@ -46,7 +46,7 @@ def check_string_is_present(root, key)
 end
 
 string_words = ["hi","hind","hello","how","here","her","apple","App","application","bus","bush","burst","Appointed"]
-string_words_meaning = {:hi => "used as a friendly greeting or to attract attention", 
+String_words_meaning = {:hi => "used as a friendly greeting or to attract attention", 
   :hind => "situated at the back; posterior", 
   :hello =>"used as a greeting or to begin a phone conversation" , 
   :how => "in what way or manner; by what means", 
@@ -59,7 +59,7 @@ string_words_meaning = {:hi => "used as a friendly greeting or to attract attent
   :bush => "a shrub or clump of shrubs with stems of moderate length",
   :burst => "a shrub or clump of shrubs with stems of moderate length",
   :appointed => " decided on beforehand; designated"}
-key = "hi"
+key = "hifi"
 root = Node.new()
 
 string_words.each do |word|
@@ -70,7 +70,7 @@ end
 # if check_string_is_present(root, key.downcase)
 #  p  key +" is present"if check_string_is_present(root, key.downcase)
 if check_string_is_present(root, key.downcase)
-  string_words_meaning.each do |k, v|
+  String_words_meaning.each do |k, v|
     if "#{k}" == key.downcase
       p "#{k}: #{v}"
     end
