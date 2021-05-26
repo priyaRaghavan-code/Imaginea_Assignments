@@ -45,8 +45,21 @@ def check_string_is_present(root, key)
   return false
 end
 
-string_words = ["hi","hind","hello","how","here","her", "google","apple","App","application","bus","bush","burst","Appointed"]
-key = "appointed"
+string_words = ["hi","hind","hello","how","here","her","apple","App","application","bus","bush","burst","Appointed"]
+string_words_meaning = {:hi => "used as a friendly greeting or to attract attention", 
+  :hind => "situated at the back; posterior", 
+  :hello =>"used as a greeting or to begin a phone conversation" , 
+  :how => "in what way or manner; by what means", 
+  :here => "n, at, or to this place or position",
+  :her => "used as the object of a verb or preposition to refer to a female person or animal previously mentioned or easily identified",
+  :apple => "the round fruit of a tree of the rose family, which typically has thin green or red skin and crisp flesh",
+  :app => "an application or application form",
+  :application => "application form",
+  :bus => "a large motor vehicle carrying passengers by road, typically one serving the public on a fixed route and for a fare",
+  :bush => "a shrub or clump of shrubs with stems of moderate length",
+  :burst => "a shrub or clump of shrubs with stems of moderate length",
+  :appointed => " decided on beforehand; designated"}
+key = "hi"
 root = Node.new()
 
 string_words.each do |word|
@@ -54,7 +67,12 @@ string_words.each do |word|
 end
 
 # print_suggested_words(root,key)
+# if check_string_is_present(root, key.downcase)
+#  p  key +" is present"if check_string_is_present(root, key.downcase)
 if check_string_is_present(root, key.downcase)
- p  key +" is present"
+  string_words_meaning.each do |k, v|
+    if "#{k}" == key.downcase
+      p "#{k}: #{v}"
+    end
+  end
 end
-
