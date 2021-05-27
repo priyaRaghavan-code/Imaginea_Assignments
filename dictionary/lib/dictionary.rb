@@ -10,6 +10,7 @@ module  DictionaryModule
     # @return: null
     def insert_node(word)
       temp = root
+     if word.scan(/[!@#$%^&*()_+{}\[\]:;'"\/\\?><.,[0-9]]/).empty?
       0.upto(word.length - 1) do |i|
         ascii_value = word[i].ord - ASCII
         if temp.Trie[ascii_value] == nil
@@ -18,6 +19,7 @@ module  DictionaryModule
         temp = temp.Trie[ascii_value]
       end
       temp.is_end = true
+    end
     end
     
     # Prints the most suitable word Prefix from the @Trie

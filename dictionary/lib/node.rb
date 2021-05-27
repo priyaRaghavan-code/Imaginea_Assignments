@@ -1,3 +1,4 @@
+require_relative './dictionary'
 # Unit of @Dictionary
 class Node
   attr_accessor :is_end, :Trie
