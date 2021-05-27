@@ -6,10 +6,10 @@ module DictionaryModule
 end
 
 if __FILE__ == $0
-  key = :hidfd # Input
+  key = :hifi # Input
 
   string_words = ["hi","hind","hello","how","here","her","apple","App","application","bus","bush","burst","Appointed"]
-  String_words_meaning = {:hi => "used as a friendly greeting or to attract attention", 
+  string_words_meaning = {:hi => "used as a friendly greeting or to attract attention", 
     :hind => "situated at the back; posterior", 
     :hello =>"used as a greeting or to begin a phone conversation" , 
     :how => "in what way or manner; by what means", 
@@ -29,10 +29,10 @@ if __FILE__ == $0
   end
 
   # Check if the given key is present in the Hash, and print its value. Else, go to @Dictionary
-  if String_words_meaning.key?(key)
-    p String_words_meaning[key]
+  if string_words_meaning.key?(key)
+    puts "The meaning for #{key} is: #{string_words_meaning[key]}"
   else
-    p "Do you mean?"
+    puts "Do you mean?"
     dictionary.check_string_is_present(key.to_s)
   end
 end
