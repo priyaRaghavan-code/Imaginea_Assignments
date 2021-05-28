@@ -51,21 +51,21 @@ RSpec.describe DictionaryModule do
     end
 
     context "given valid string to search" do
-      context "given the string which is already in trie" do
-        it "given hi to search" do
+      context "given the string hi to search which is already in trie" do
+        it "returns nil" do
           dict.insert_node("hi")
           expect(dict.get_suggested_string("hi")).to eq(nil)
         end
       end
 
-      context "given the string to search which is not in trie" do
+      context "given the string apple to search which is not in trie" do
         it "returns nil" do
           dict.insert_node("hind")
           expect(dict.get_suggested_string("apple")).to eq(nil) 
         end
       end
 
-      context "given the wrong string which is not in trie" do
+      context "given the wrong string hifi which is not in trie" do
         it "returns an array of suggested words" do
           dict.insert_node("hi")
           dict.insert_node("hind")
