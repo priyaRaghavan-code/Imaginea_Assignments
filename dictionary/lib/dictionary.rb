@@ -8,9 +8,10 @@ module  DictionaryModule
 
     # Inserts given word to the @Trie
     # @params: String word
-    # @return: null
+    # @return: boolean
     def insert_node(word)
       temp = root
+      hash_map = {}
       if word.class == String && word != "" && word != nil && word.scan(/[!@#$%^&*()_+{}\[\]:;'"\/\\?><.,[0-9]]/).empty?
         word = word.downcase
         0.upto(word.length - 1) do |i|
@@ -19,9 +20,10 @@ module  DictionaryModule
             temp.Trie[ascii_value] = Node.new()
           end
           temp = temp.Trie[ascii_value]
+          hash_map[word[i]] = ascii_value
         end
         temp.is_end = true
-        return true
+        return hash_map
       else
         return false
       end

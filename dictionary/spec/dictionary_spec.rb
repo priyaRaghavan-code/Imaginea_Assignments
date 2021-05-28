@@ -5,130 +5,128 @@ require 'rspec'
 
 RSpec.describe DictionaryModule do
   let(:dict) { DictionaryModule::Dictionary.new Node.new }
-  describe "dictionary_class" do
-    context "given valid string to insert"
-      context "given #{""} to insert" do
-        it "returns false" do
-          expect(dict.insert_node("")).to eq(false)
-        end
+  describe DictionaryModule::Dictionary do
+    context "#insert_node"
+      it "given #{""} to insert, returns false" do
+        expect(dict.insert_node("")).to eq(false)
       end
 
-      context "given hi to insert" do
-        it "returns true" do
-          expect(dict.insert_node("hi")).to eq(true) 
-        end
+      it "given hi string to insert, returns true" do
+        test_map = {"a"=>0, "e"=>4, "l"=>11, "p"=>15}
+        expect(dict.insert_node("apple")).to eq(test_map) 
       end
 
-      context "given capital valid string to insert" do
-        it "returns true" do
-          expect(dict.insert_node("HELLO")).to eq(true) 
-        end
+      it "given HELLO string to insert, returns true" do
+        test_map =  {"a"=>0, "c"=>2, "e"=>4, "i"=>8, "m"=>12, "r"=>17}
+        expect(dict.insert_node("Icecream")).to eq(test_map) 
       end
 
-      context "given valid string with capital letters in middle to insert" do
-        it "returns true" do
-          expect(dict.insert_node("heLLO")).to eq(true) 
-        end
-      end
-      
-      context "given nil to insert" do
-        it "returns false" do
-          expect(dict.insert_node(nil)).to eq(false) 
-        end
+      it "given heLLO string to insert, returns true" do
+        test_map = {"e"=>4, "h"=>7, "l"=>11, "o"=>14}
+        expect(dict.insert_node("heLLO")).to eq(test_map)
       end
 
-      context "given special characters to insert" do
-        it "returns false" do
-          expect(dict.insert_node("abd234@#%ad")).to eq(false) 
+      it "given hi,hind to insert" do
+        dict.insert_node("hi")
+        dict.insert_node("hind")
+        word_map_one = {"h"=>0, "i"=>1} #hi
+        #word_map_two = {"a"=>0, "s"=>1, "h"=>2, "i"=>3} #ashi
+        word_map_two = {"h" =>0, "i"=>1, "n"=>2, "d"=>3}
+        final_map = {"h"=>0, "i"=>1}
+        final_map.each do |key,value|
+            if word_map_one[key] == word_map_two[key]
+              expect(true).to eq(true)
+            else
+              p "inside false"
+              expect(false).to eq(false)  
+            end
         end
       end
+    
+      it "given nil to insert, returns false" do
+        expect(dict.insert_node(nil)).to eq(false) 
+      end
 
-      context "given non-string values to insert" do
-        it "returns false" do
-          expect(dict.insert_node(123)).to eq(false) 
-        end
+      it "given special character string to insert, returns false" do
+        expect(dict.insert_node("abd234@#%ad")).to eq(false) 
+      end
+
+      it "given non-string value to insert, returns false" do
+        expect(dict.insert_node(123)).to eq(false) 
       end
     end
 
-    context "given valid string to search" do
-      context "given the string hi to search which is already in trie" do
-        it "returns nil" do
-          dict.insert_node("hi")
-          expect(dict.get_suggested_string("hi")).to eq(nil)
-        end
+    context "#get_suggested string" do
+      it "given hi to search, returns nil" do
+        dict.insert_node("hi")
+        expect(dict.get_suggested_string("hi")).to eq(nil)
       end
 
-      context "given the string apple to search which is not in trie" do
-        it "returns nil" do
-          dict.insert_node("hind")
-          expect(dict.get_suggested_string("apple")).to eq(nil) 
-        end
+      it "given apple to search, returns nil" do
+        dict.insert_node("hind")
+        expect(dict.get_suggested_string("apple")).to eq(nil) 
       end
 
-      context "given the wrong string hifi which is not in trie" do
-        it "returns an array of suggested words" do
-          dict.insert_node("hi")
-          dict.insert_node("hind")
-          dict.insert_node("hello")
-          expect(dict.get_suggested_string("hifi")).to eq(["hi","hind"])
-        end
+      it "given hifi to search in the trie, returns an array of suggested words" do
+        dict.insert_node("hi")
+        dict.insert_node("hind")
+        dict.insert_node("hello")
+        expect(dict.get_suggested_string("hifi")).to eq(["hi","hind"])
       end
 
-      context "given the special characters to search" do
-        it "returns nil" do
-          expect(dict.get_suggested_string("#$%@!@")).to eq(nil)
-        end
+      it "given special character #$%@!@ to search, returns nil" do
+        expect(dict.get_suggested_string("#$%@!@")).to eq(nil)
       end
 
-      context "given numbers to search" do
-        it "returns nil" do
-          expect(dict.get_suggested_string("12334")).to eq(nil)
-        end
+      it "given the number 12334 to search, returns nil" do
+        expect(dict.get_suggested_string("12334")).to eq(nil)
       end
 
-      context "given non-string value to search" do
-        it "returns nil" do
-          expect(dict.get_suggested_string(12434)).to eq(nil)
-        end
+      it "given non string value 1234 to search, returns nil" do
+        expect(dict.get_suggested_string(12434)).to eq(nil)
       end
 
-      context "given empty string to search" do
-        it "returns nil" do
-          expect(dict.get_suggested_string(" ")).to eq(nil)
-        end
+      it "given #{""} to search, returns nil" do
+        expect(dict.get_suggested_string(" ")).to eq(nil)
       end
 
-      context "given nil string to search" do
-        it "returns nil" do
-          expect(dict.get_suggested_string(nil)).to eq(nil)
-        end
+      it "given nil to search, returns nil" do
+        expect(dict.get_suggested_string(nil)).to eq(nil)
       end
 
-      context "given the valid string to search with newline in last" do
-        it "returns an array of suggested words" do
-          dict.insert_node("hi")
-          dict.insert_node("hind")
-          dict.insert_node("hello")
-          expect(dict.get_suggested_string("hi fi\n")).to eq(["hi","hind"])
-        end
+      it "given hi fi\n to search, returns an array of suggested words" do
+        dict.insert_node("hi")
+        dict.insert_node("hind")
+        dict.insert_node("hello")
+        expect(dict.get_suggested_string("hi fi\n")).to eq(["hi","hind"])
       end
 
-      context "given the valid string to search with tab in last" do
-        it "returns an array of suggested words" do
-          dict.insert_node("banana")
-          dict.insert_node("bat")
-          dict.insert_node("buffalo")
-          expect(dict.get_suggested_string("bye\t")).to eq(["banana","bat","buffalo"])
-        end
+      it "given bye\t to search, returns an array of suggested words" do
+        dict.insert_node("banana")
+        dict.insert_node("bat")
+        dict.insert_node("buffalo")
+        expect(dict.get_suggested_string("bye\t")).to eq(["banana","bat","buffalo"])
       end
 
-      context "given the capital string which is not in trie" do
-        it "returns an array of suggested words" do
-          dict.insert_node("apple")
-          dict.insert_node("app")
-          dict.insert_node("application")
-          expect(dict.get_suggested_string("Appolo")).to eq(["app","apple","application"])
-        end
+      it "given Appolo to search, returns an array of suggested words" do
+        dict.insert_node("apple")
+        dict.insert_node("app")
+        dict.insert_node("application")
+        expect(dict.get_suggested_string("Appolo")).to eq(["app","apple","application"])
+      end
+
+    end
+  end
+
+  describe Node do
+    let(:node) {Node.new()}
+    context "#initialize" do
+      it "initializes the trie tree end to be false" do
+        expect(node.Trie).to eq([nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil, nil])
+      end
+
+      it "initialize the trie tree end to be false" do
+        expect(node.is_end).to eq(false)
       end
     end
   end
