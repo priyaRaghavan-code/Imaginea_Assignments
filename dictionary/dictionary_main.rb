@@ -6,11 +6,8 @@ module DictionaryModule
 end
 
 if __FILE__ == $0
-  key = "hi" # Input
+  key = "hifi" # Input
 
-  string_words = ["hi","hind","hello","how","here","her","apple","App","application","bus","bush","burst","Appointed","cat","dog","elephant","fan",
-                   "grandma","idle","jug","king","lion","monkey","nose","onion","pot","queue","rabbit","soft","tiger","union","verbose","water","water",
-                  "xerox","yellow","zoo","a"]
   string_words_meaning = 
   {
     "hi" => "used as a friendly greeting or to attract attention", 
@@ -53,13 +50,12 @@ if __FILE__ == $0
   }
   dictionary = DictionaryModule::Dictionary.new Node.new()
 
-  string_words.each do |each_word|
-    if each_word.scan(/[!@#$%^&*()_+{}\[\]:;'"\/\\?><.,[0-9]]/).empty?
-      dictionary.insert_node(each_word.downcase)
+  string_words_meaning.each do |word,meaning|
+    if word.scan(/[!@#$%^&*()_+{}\[\]:;'"\/\\?><.,[0-9]]/).empty?
+      dictionary.insert_node(word.downcase)
     else
-      puts "#{each_word} is not valid string to insert"
+      puts "#{word} is not valid string to insert"
     end
-
   end
 
   # Check if the given key is present in the Hash, and print its value. Else, go to @Dictionary
@@ -67,8 +63,14 @@ if __FILE__ == $0
     if string_words_meaning.key?(key)
       puts "The meaning for #{key} is: #{string_words_meaning[key]}"
     else
-      puts "Do you mean?"
-      dictionary.check_string_is_present(key)
+      result = dictionary.get_suggested_string(key)
+      if result != nil
+        puts "Do you mean?"
+        puts result
+      else
+        puts "Enter Correct string to search"
+      end
+
     end
   else
     puts "Enter correct string to search"

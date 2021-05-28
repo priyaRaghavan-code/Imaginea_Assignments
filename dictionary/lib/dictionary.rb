@@ -1,3 +1,4 @@
+require 'rspec'
 module  DictionaryModule
   class Dictionary
     ASCII = 97
@@ -10,53 +11,62 @@ module  DictionaryModule
     # @return: null
     def insert_node(word)
       temp = root
-     if word.scan(/[!@#$%^&*()_+{}\[\]:;'"\/\\?><.,[0-9]]/).empty?
-      0.upto(word.length - 1) do |i|
-        ascii_value = word[i].ord - ASCII
-        if temp.Trie[ascii_value] == nil
-          temp.Trie[ascii_value] = Node.new()
+      if word.class == String && word != "" && word != nil && word.scan(/[!@#$%^&*()_+{}\[\]:;'"\/\\?><.,[0-9]]/).empty?
+        word = word.downcase
+        0.upto(word.length - 1) do |i|
+          ascii_value = word[i].ord - ASCII
+          if temp.Trie[ascii_value] == nil
+            temp.Trie[ascii_value] = Node.new()
+          end
+          temp = temp.Trie[ascii_value]
         end
-        temp = temp.Trie[ascii_value]
+        temp.is_end = true
+        return true
+      else
+        return false
       end
-      temp.is_end = true
-    end
     end
     
-    # Prints the most suitable word Prefix from the @Trie
+    # Gets the most suitable word Prefix from the @Trie
     # @params: TrieNode temp, String result
-    # @returns: null
-    def print_suggested_words(temp, result)
+    # @returns: Array arr
+    def suggested_string_helper(temp, result, arr)
       if temp.is_end == true
-        puts result
+        arr.push(result)
       end
       0.upto(26 - 1) do |i|
         if temp.Trie[i] != nil
           result += (i+ASCII).chr 
-          print_suggested_words(temp.Trie[i], result)
+          suggested_string_helper(temp.Trie[i], result, arr)
           result = result[0..result.length-2]
         end
       end
+      return arr
     end
     
-    # Returns if the given key is present. Else, call @print_suggested_words
+    # Calls @print_suggested_words if @key is not present in the Trie, return Array of suggested Words. Else returns nil 
     # @params: String key
-    # @returns: boolean
-    def check_string_is_present(key)
+    # @returns: Array result or nil
+    def get_suggested_string(key)
       temp = root
-      0.upto(key.length - 1) do |i|
-        if temp.Trie[key[i].ord - ASCII] == nil
-          print_suggested_words(temp, key[0..i - 1])
-          return false
+      if key != "" && key != nil && temp.Trie[key[0].ord - ASCII] == nil && temp.Trie[(key[0].ord+32) - ASCII] == nil
+        return nil
+      else
+        if key.class == String && key != "" && key != nil 
+          0.upto(key.length - 1) do |i|
+            key =key.downcase
+            if temp.Trie[key[i].ord - ASCII] == nil
+              result = suggested_string_helper(temp, key[0..i - 1], [])
+              return result
+            end
+            temp = temp.Trie[key[i].ord - ASCII]
+          end
         end
-        temp = temp.Trie[key[i].ord - ASCII]
-      end
-      if temp.is_end == true
-        return true
-      end
-      print_suggested_words(temp, key)
-      return false
+        if temp.is_end == true
+          return nil
+        end
+      end  
     end
-
     # Access Modifier
     private
     def root
